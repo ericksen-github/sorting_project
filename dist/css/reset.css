@@ -1,0 +1,412 @@
+html {
+  font-family: sans-serif;
+  background-color: #f7f7f7;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.barDecoration {
+  box-shadow: inset 0px 0px 15px 3px #23395e;
+  background: linear-gradient(to bottom, #2e466e 5%, #415989 100%);
+  background-color: #2e466e;
+  border: 1px solid #1f2f47;
+}
+
+#navbar {
+  z-index: 10;
+  overflow: hidden;
+  text-align: center;
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+#navbar a {
+  display: inline-block;
+  text-align: center;
+  padding: 1rem;
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  color: black;
+  background-color: #8da6cf;
+}
+
+.sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.borderBreak,
+footer {
+  height: 2rem;
+}
+
+#about {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14rem 0 2rem 0;
+  background-color: #f7f7f7;
+}
+
+.sectionTitle {
+  position: absolute;
+  top: 9rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+#aboutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2rem 0 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+#portraitImg {
+  width: 200px;
+  margin: 0 3rem 0 0;
+}
+
+#aboutText {
+  text-align: left;
+  width: 60%;
+  margin: 0 0 0 3rem;
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.6px;
+  font-size: 1.5rem;
+}
+
+#projects {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 9rem 0 0 0;
+  background-color: #f7f7f7;
+}
+
+#projectsTitle {
+  top: 5rem;
+}
+
+.currentProjectContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2rem 0 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+#currentProjectImg {
+  display: block;
+  width: 50%;
+}
+
+#currentProjectText {
+  display: block;
+  text-align: left;
+  width: 50%;
+  margin-left: 2rem;
+  color: rgb(25, 25, 25);
+  letter-spacing: 0.6px;
+  font-size: 1.25rem;
+}
+
+li {
+  margin-left: 1rem;
+}
+
+.projectLinksContainer {
+  text-align: center;
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.imgWrap {
+  position: relative;
+  display: inline-block;
+  width: 10%;
+  margin: 0.2rem;
+  border: 1px solid black;
+}
+
+.imgWrap:hover {
+  cursor: pointer;
+}
+
+.projectLinks {
+  position: relative;
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.imgDescription {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  right: 0;
+  color: rgb(0, 0, 0);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.imgWrap:hover .projectLinks,
+.active .projectLinks {
+  opacity: 0.3;
+}
+
+.imgWrap:hover .imgDescription,
+.active .imgDescription {
+  bottom: 40%;
+  visibility: visible;
+  opacity: 1;
+}
+
+#projectsGithubLinkText {
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 1.15rem;
+  background-color: #ffffff;
+}
+
+#githubLogo {
+  height: 4rem;
+  width: 4rem;
+  padding: 0.75rem;
+  background-color: #293241;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+#linkedinLogo,
+#resumeImg {
+  height: 5.5rem;
+  width: 6rem;
+  cursor: pointer;
+}
+
+#contact {
+  text-align: center;
+  background-color: #f7f7f7;
+}
+
+.iconsContainer {
+  margin: 1rem;
+}
+
+.logo {
+  margin: 1rem;
+}
+
+footer {
+  text-align: center;
+  line-height: 2rem;
+  color: #f2f2f2;
+}
+
+@media only screen and (max-width: 1024px) {
+  #about {
+    padding-top: 10rem;
+  }
+
+  #aboutTitle {
+    top: 5rem;
+  }
+
+  #aboutText {
+    font-size: 1.4rem;
+  }
+
+  #currentProjectText {
+    font-size: 1.15rem;
+  }
+
+  .imgWrap:hover .imgDescription,
+  .active .imgDescription {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .currentProjectContainer {
+    display: block;
+  }
+
+  #currentProjectImg {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  #currentProjectText {
+    width: 90%;
+    margin: auto;
+    margin-left: 0;
+    font-size: 1.25rem;
+    line-height: 120%;
+  }
+
+  .imgWrap {
+    width: 15%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .floatingBar {
+    top: 20rem;
+    left: -65rem;
+  }
+
+  #about {
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding-top: 8rem;
+  }
+
+  #aboutTitle {
+    position: relative;
+    top: 0rem;
+    margin-bottom: 2rem;
+  }
+
+  #aboutContainer {
+    display: block;
+  }
+
+  #portraitImg {
+    position: relative;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+
+  #aboutText {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: auto;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .imgDescription {
+    color: #ffffff00;
+  }
+
+  .imgWrap:hover .imgDescription,
+  .active .imgDescription {
+    height: 100%;
+    width: 100%;
+    bottom: 0%;
+    background-color: #293241;
+    opacity: 0.4;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .headerContainer a {
+    font-size: 1.25rem;
+  }
+
+  .headerText {
+    padding: 2rem;
+    font-size: 1.5rem;
+  }
+
+  #portraitImg {
+    width: 150px;
+  }
+
+  .projectLinksContainer {
+    margin: 1.25rem 0 1.25rem 0;
+  }
+
+  #githubLogo {
+    height: 2rem;
+    width: 2rem;
+    margin: -0.5rem 0.25rem -0.5rem 0.25rem;
+    border-radius: 0.5rem;
+  }
+
+  #linkedinLogo,
+  #resumeImg {
+    height: 3.5rem;
+    width: 3.5rem;
+    margin: -0.5rem 0.25rem -0.5rem 0.25rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .headerContainer a {
+    font-size: 1.25rem;
+  }
+
+  .headerText {
+    padding: 1.75rem;
+    font-size: 1.25rem;
+  }
+
+  #navbar a {
+    padding: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  #portraitImg {
+    display: none;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  #aboutTitle {
+    margin-bottom: 3rem;
+  }
+
+  #aboutText {
+    font-size: 0.8rem;
+  }
+
+  #currentProjectText {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .projectLinksContainer {
+    margin: 1rem 0 1rem 0;
+  }
+
+  #projectsGithubLinkText {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #currentProjectText {
+    font-size: 0.7rem;
+  }
+
+  #projectsGithubLinkText {
+    font-size: 0.8rem;
+  }
+}
