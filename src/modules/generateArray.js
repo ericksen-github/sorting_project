@@ -1,3 +1,5 @@
+let newArray;
+
 const generateArray = () => {
   const length = Math.floor(Math.random() * 40) + 100;
   const maxNum = Math.floor(Math.random() * length);
@@ -9,4 +11,4 @@ const generateArray = () => {
   console.log(newArray);
 };
 
-export { generateArray };
+export { generateArray, newArray };
