@@ -11,7 +11,10 @@ const generateArray = () => {
 };
 
 const createBars = (newArray) => {
-  const barWrapper = document.getElementById("barWrapper");
+  const container = document.getElementById("container");
+  const barWrapper = document.createElement("div");
+  container.appendChild(barWrapper);
+
   for (let i = 0; i < newArray.length; i++) {
     const newBar = document.createElement("div");
     newBar.classList.add("bar");
@@ -20,4 +23,9 @@ const createBars = (newArray) => {
   }
 };
 
-export { generateArray, newArray };
+const clearBars = () => {
+  const container = document.getElementById("container");
+  container.removeChild(container.lastElementChild);
+};
+
+export { generateArray, newArray, clearBars };
