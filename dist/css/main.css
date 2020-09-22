@@ -1,0 +1,13 @@
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.bar {
+  display: inline-block;
+  width: 3px;
+  background-color: blue;
+  margin: 1px;
+}
