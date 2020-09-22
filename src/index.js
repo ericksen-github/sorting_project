@@ -1,8 +1,8 @@
-import { clearBars, generateArray } from "./modules/generateArray";
-
-generateArray();
+import { generateArrayFunctions } from "./modules/generateArray";
 
 document.getElementById("createNewArray").addEventListener("click", () => {
-  clearBars();
-  generateArray();
+  generateArrayFunctions.clearBars();
+  generateArrayFunctions.generateArray();
 });
+
+generateArrayFunctions.generateArray();
