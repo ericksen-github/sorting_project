@@ -1,20 +1,23 @@
 const sortFunctions = (() => {
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
-  // Merge Sort Implentation (Recursion)
   function mergeSort(unsortedArray) {
     // No need to sort the array if the array only has one element or empty
     if (unsortedArray.length <= 1) {
       return unsortedArray;
     }
-    // In order to divide the array in half, we need to figure out the middle
+
     const middle = Math.floor(unsortedArray.length / 2);
 
-    // This is where we will be dividing the array into left and right
     const left = unsortedArray.slice(0, middle);
     const right = unsortedArray.slice(middle);
 
-    // Using recursion to combine the left and right
-    return merge(mergeSort(left), mergeSort(right));
+    let indexList = [];
+
+    for (let i = arrayIndexes.length, j = 0; j < right.length; j++, i--) {
+      indexList.unshift[i];
+    }
+
+    return merge(mergeSort(left), mergeSort(right, indexLocation));
   }
 
   // Merge the two arrays: left and right
@@ -33,9 +36,11 @@ const sortFunctions = (() => {
         rightIndex++; // move right array cursor
       }
     }
+    console.log(left);
+    console.log(right);
+    console.log(leftIndex + " left");
+    console.log(rightIndex + " right");
 
-    // We need to concat here because there will be one element remaining
-    // from either left OR the right
     return resultArray
       .concat(left.slice(leftIndex))
       .concat(right.slice(rightIndex));
