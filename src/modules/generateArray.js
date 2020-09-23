@@ -1,13 +1,12 @@
-import { sortFunctions } from "./sortArray";
-
 let newArray;
 
 const generateArrayFunctions = (() => {
   const generateArray = () => {
-    const minNum = 5;
+    const minNum = 5; // used to set range of array numbers
     const maxNum = 20;
+    const length = 3; // total array size
 
-    newArray = Array.from({ length: 3 }, () =>
+    newArray = Array.from({ length: length }, () =>
       Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)
     );
     createBars(newArray);
@@ -21,7 +20,7 @@ const generateArrayFunctions = (() => {
     for (let i = 0; i < newArray.length; i++) {
       const newBar = document.createElement("div");
       newBar.classList.add("bar");
-      newBar.style.height = `${newArray[i]}px`;
+      newBar.style.height = `${newArray[i]}px`; // sets bar height to generated value
       barWrapper.appendChild(newBar);
     }
   };

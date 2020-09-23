@@ -34,6 +34,7 @@ const sortFunctions = (() => {
       rightIndex = 0;
 
     // We will concatenate values into the resultArray in order
+    // compares the value of each while ignoring the original index
     while (leftIndex < left.length && rightIndex < right.length) {
       if (left[leftIndex].value < right[rightIndex].value) {
         resultArray.push(left[leftIndex]);
