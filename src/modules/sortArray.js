@@ -1,6 +1,17 @@
-let arrayIndexes = [0, 1, 2, 3, 4];
-
 const sortFunctions = (() => {
+  // takes generated array and pushes each value and the index of its
+  // location in the original array into unsortedArray
+  const preMerge = (newArray) => {
+    let unsortedArray = [];
+
+    // i comes out as array on index, needs [0] to grab just num
+    for (let i = 0; i < newArray.length; i++) {
+      unsortedArray.push({ value: newArray[i], index: [i][0] });
+    }
+
+    console.log(mergeSort(unsortedArray), " end preMerge");
+  };
+
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
   function mergeSort(unsortedArray) {
     // No need to sort the array if the array only has one element or empty
@@ -13,12 +24,6 @@ const sortFunctions = (() => {
     const left = unsortedArray.slice(0, middle);
     const right = unsortedArray.slice(middle);
 
-    let indexList = [];
-
-    for (let i = arrayIndexes.length, j = 0; j < right.length; j++, i--) {
-      indexList.unshift[i];
-    }
-
     return merge(mergeSort(left), mergeSort(right));
   }
 
@@ -30,7 +35,7 @@ const sortFunctions = (() => {
 
     // We will concatenate values into the resultArray in order
     while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex] < right[rightIndex]) {
+      if (left[leftIndex].value < right[rightIndex].value) {
         resultArray.push(left[leftIndex]);
         leftIndex++; // move left array cursor
       } else {
@@ -38,10 +43,6 @@ const sortFunctions = (() => {
         rightIndex++; // move right array cursor
       }
     }
-    console.log(left);
-    console.log(right);
-    console.log(leftIndex + " left");
-    console.log(rightIndex + " right");
 
     return resultArray
       .concat(left.slice(leftIndex))
@@ -49,6 +50,7 @@ const sortFunctions = (() => {
   }
 
   return {
+    preMerge,
     mergeSort,
   };
 })();

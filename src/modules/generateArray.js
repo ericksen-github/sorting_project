@@ -5,9 +5,9 @@ let newArray;
 const generateArrayFunctions = (() => {
   const generateArray = () => {
     const minNum = 5;
-    const maxNum = 500;
+    const maxNum = 20;
 
-    newArray = Array.from({ length: 5 }, () =>
+    newArray = Array.from({ length: 3 }, () =>
       Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)
     );
     createBars(newArray);

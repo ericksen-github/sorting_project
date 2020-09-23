@@ -7,7 +7,8 @@ document.getElementById("createNewArray").addEventListener("click", () => {
 });
 
 document.getElementById("mergeSort").addEventListener("click", () => {
-  sortFunctions.mergeSort(newArray);
+  console.log(newArray, "original array");
+  sortFunctions.preMerge(newArray);
 });
 
 generateArrayFunctions.generateArray();
