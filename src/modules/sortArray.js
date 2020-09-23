@@ -1,3 +1,5 @@
+let arrayIndexes = [0, 1, 2, 3, 4];
+
 const sortFunctions = (() => {
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
   function mergeSort(unsortedArray) {
@@ -17,7 +19,7 @@ const sortFunctions = (() => {
       indexList.unshift[i];
     }
 
-    return merge(mergeSort(left), mergeSort(right, indexLocation));
+    return merge(mergeSort(left), mergeSort(right));
   }
 
   // Merge the two arrays: left and right

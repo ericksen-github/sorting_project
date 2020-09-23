@@ -24,7 +24,6 @@ const generateArrayFunctions = (() => {
       newBar.style.height = `${newArray[i]}px`;
       barWrapper.appendChild(newBar);
     }
-    console.log(sortFunctions.mergeSort(newArray));
   };
 
   const clearBars = () => {
