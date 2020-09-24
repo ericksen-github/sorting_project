@@ -1,5 +1,4 @@
 import { visualsFunctions } from "./handleVisuals";
-let counter = 0;
 
 const sortFunctions = (() => {
   // takes generated array and pushes each value and the index of its
@@ -13,7 +12,6 @@ const sortFunctions = (() => {
     }
 
     console.log(mergeSort(unsortedArray), " end preMerge");
-    console.log(counter, " total counts");
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
@@ -41,50 +39,28 @@ const sortFunctions = (() => {
     // compares the value of each while ignoring the original index
     while (leftIndex < left.length && rightIndex < right.length) {
       visualsFunctions.handleVisuals(left[leftIndex], right[rightIndex]);
-      counter++;
+
+      console.log("comparing ", left[leftIndex], " vs ", right[rightIndex]);
 
       if (left[leftIndex].value < right[rightIndex].value) {
-        // swaps object index values to match order of values
-        if (left[leftIndex].index > right[rightIndex].index) {
-          console.log(left[leftIndex], " left before swap if");
-          console.log(right[rightIndex], " right before swap if");
-
-          let swapArray = visualsFunctions.swapDivs(
-            left[leftIndex],
-            right[rightIndex]
-          );
-
-          left[leftIndex] = swapArray[0];
-          right[rightIndex] = swapArray[1];
-
-          console.log(left[leftIndex], " left after swap if");
-          console.log(right[rightIndex], " right after swap if");
-        }
+        console.log("pushing left ", left[leftIndex]);
 
         resultArray.push(left[leftIndex]);
         leftIndex++; // move left array cursor
       } else {
-        // if values are equal, does not swap indexes
-        if (left[leftIndex].value != right[rightIndex].value) {
-          console.log(left[leftIndex], " left before swap else");
-          console.log(right[rightIndex], " right before swap else");
+        console.log(
+          left[leftIndex].index,
+          "left index",
+          right[rightIndex].index,
+          "right index"
+        );
 
-          let swapArray = visualsFunctions.swapDivs(
-            left[leftIndex],
-            right[rightIndex]
-          );
-
-          left[leftIndex] = swapArray[0];
-          right[rightIndex] = swapArray[1];
-
-          console.log(left[leftIndex], " left after swap else");
-          console.log(right[rightIndex], " right after swap else");
-        }
+        console.log("pushing right ", right[rightIndex]);
 
         resultArray.push(right[rightIndex]);
         rightIndex++; // move right array cursor
       }
-    }
+    } // end of while
 
     console.log(
       JSON.stringify(
