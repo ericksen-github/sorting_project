@@ -17,15 +17,12 @@ const visualsFunctions = (() => {
     timerTracker++;
   };
 
-  const swapDivs = (left, right) => {
-    const barWrapper = document.getElementById("barWrapper");
+  const swapDivs = (current, lowest) => {
+    setTimeout(() => {
+      const barWrapper = document.getElementById("barWrapper");
 
-    barWrapper.childNodes[left.index].style.height = `${right.value}px`;
-    barWrapper.childNodes[right.index].style.height = `${left.value}px`;
-
-    left.index = right.index;
-
-    return [left];
+      barWrapper.childNodes[lowest].style.height = `${current.value}px`;
+    }, timeController * timerTracker);
   };
 
   return {

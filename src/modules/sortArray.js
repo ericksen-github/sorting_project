@@ -61,6 +61,8 @@ const sortFunctions = (() => {
       );
 
       if (left[leftIndex].value < right[rightIndex].value) {
+        visualsFunctions.swapDivs(left[leftIndex], lowestIndex);
+
         // updates div with same value to new index location and iterates
         // lowestIndex by 1 to move on to next index location
         left[leftIndex].index = lowestIndex;
@@ -69,6 +71,8 @@ const sortFunctions = (() => {
         resultArray.push(left[leftIndex]);
         leftIndex++; // move left array cursor
       } else {
+        visualsFunctions.swapDivs(right[rightIndex], lowestIndex);
+
         right[rightIndex].index = lowestIndex;
         lowestIndex++;
 
@@ -85,6 +89,13 @@ const sortFunctions = (() => {
     // sometimes leaving any leftover values unindexed. this makes sure the last two
     // indexes are the highest 2 in the current range
     if (endArray.length > 1) {
+      visualsFunctions.swapDivs(
+        endArray[endArray.length - 2],
+        highestIndex - 1
+      );
+
+      visualsFunctions.swapDivs(endArray[endArray.length - 1], highestIndex);
+
       endArray[endArray.length - 2].index = highestIndex - 1;
       endArray[endArray.length - 1].index = highestIndex;
     }
