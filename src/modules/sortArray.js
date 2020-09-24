@@ -35,6 +35,19 @@ const sortFunctions = (() => {
       leftIndex = 0,
       rightIndex = 0;
 
+    // combines index values from left and right and finds the lowest
+    // and highest indexes to know which div range to alter
+    let lengthArray = [];
+    left.forEach((ele) => {
+      lengthArray.push(ele.index);
+    });
+    right.forEach((ele) => {
+      lengthArray.push(ele.index);
+    });
+
+    let lowestIndex = Math.min(...lengthArray);
+    const highestIndex = Math.max(...lengthArray);
+
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original index
     while (leftIndex < left.length && rightIndex < right.length) {
@@ -43,37 +56,32 @@ const sortFunctions = (() => {
       console.log("comparing ", left[leftIndex], " vs ", right[rightIndex]);
 
       if (left[leftIndex].value < right[rightIndex].value) {
-        console.log("pushing left ", left[leftIndex]);
+        left[leftIndex].index = lowestIndex;
+        lowestIndex++;
 
         resultArray.push(left[leftIndex]);
         leftIndex++; // move left array cursor
       } else {
-        console.log(
-          left[leftIndex].index,
-          "left index",
-          right[rightIndex].index,
-          "right index"
-        );
-
-        console.log("pushing right ", right[rightIndex]);
+        right[rightIndex].index = lowestIndex;
+        lowestIndex++;
 
         resultArray.push(right[rightIndex]);
         rightIndex++; // move right array cursor
       }
     } // end of while
 
-    console.log(
-      JSON.stringify(
-        resultArray
-          .concat(left.slice(leftIndex))
-          .concat(right.slice(rightIndex))
-      ),
-      " results array"
-    );
-
-    return resultArray
+    let endArray = resultArray
       .concat(left.slice(leftIndex))
       .concat(right.slice(rightIndex));
+
+    if (endArray.length > 1) {
+      endArray[endArray.length - 2].index = highestIndex - 1;
+      endArray[endArray.length - 1].index = highestIndex;
+    }
+
+    console.log(JSON.stringify(endArray), " end array after if");
+
+    return endArray;
   }
 
   return {
