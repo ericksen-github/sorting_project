@@ -3,22 +3,28 @@ let timerTracker = 1;
 const visualsFunctions = (() => {
   const timeController = 50;
 
-  const handleHighlighting = (left, right) => {
+  const handleHighlighting = (first, second) => {
     const barWrapper = document.getElementById("barWrapper");
+
+    const one = first.index;
+    const two = second.index;
+
     setTimeout(() => {
-      barWrapper.childNodes[left].style.backgroundColor = "red";
-      barWrapper.childNodes[right].style.backgroundColor = "red";
+      barWrapper.childNodes[one].style.backgroundColor = "red";
+      barWrapper.childNodes[two].style.backgroundColor = "red";
 
       setTimeout(() => {
-        barWrapper.childNodes[left].style.backgroundColor = "blue";
-        barWrapper.childNodes[right].style.backgroundColor = "blue";
+        barWrapper.childNodes[one].style.backgroundColor = "blue";
+        barWrapper.childNodes[two].style.backgroundColor = "blue";
       }, timeController);
     }, timeController * timerTracker);
 
     timerTracker++;
   };
 
-  const swapDivs = (current, lowest) => {
+  const swapDivs = (current, lowest, other) => {
+    console.log(current, " vs ", other);
+
     setTimeout(() => {
       const barWrapper = document.getElementById("barWrapper");
 
