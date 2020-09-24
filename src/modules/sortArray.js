@@ -1,4 +1,4 @@
-import { visualsFunctions } from "./handleVisuals";
+import { visualsFunctions } from "./visualsFunctions";
 
 const sortFunctions = (() => {
   // takes generated array and pushes each value and the index of its
@@ -35,8 +35,12 @@ const sortFunctions = (() => {
       leftIndex = 0,
       rightIndex = 0;
 
-    // combines index values from left and right and finds the lowest
+    // grabs index values from left and right and finds the lowest
     // and highest indexes to know which div range to alter
+    // for ex if low = 4 high = 7, the values of the numbers in left and right
+    // correspond to div locations 4 through 7. this means that when assigning
+    // new indexes to DOM elements, only the indexes associated with those values are
+    // available to assign.
     let lengthArray = [];
     left.forEach((ele) => {
       lengthArray.push(ele.index);
@@ -51,11 +55,13 @@ const sortFunctions = (() => {
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original index
     while (leftIndex < left.length && rightIndex < right.length) {
-      visualsFunctions.handleVisuals(left[leftIndex], right[rightIndex]);
+      visualsFunctions.handleHighlighting(left[leftIndex], right[rightIndex]);
 
       console.log("comparing ", left[leftIndex], " vs ", right[rightIndex]);
 
       if (left[leftIndex].value < right[rightIndex].value) {
+        // updates div with same value to new index location and iterates
+        // lowestIndex by 1 to move on to next index location
         left[leftIndex].index = lowestIndex;
         lowestIndex++;
 
@@ -74,6 +80,9 @@ const sortFunctions = (() => {
       .concat(left.slice(leftIndex))
       .concat(right.slice(rightIndex));
 
+    // this is needed because at the end of the merge, it concats the two arrays
+    // sometimes leaving any leftover values unindexed. this makes sure the last two
+    // indexes are the highest 2 in the current range
     if (endArray.length > 1) {
       endArray[endArray.length - 2].index = highestIndex - 1;
       endArray[endArray.length - 1].index = highestIndex;

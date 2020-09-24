@@ -1,10 +1,12 @@
 const visualsFunctions = (() => {
-  const handleVisuals = (left, right) => {
+  const handleHighlighting = (left, right) => {
     const barWrapper = document.getElementById("barWrapper");
 
     barWrapper.childNodes[left.index].style.backgroundColor = "red";
-
     barWrapper.childNodes[right.index].style.backgroundColor = "red";
+
+    barWrapper.childNodes[left.index].style.backgroundColor = "blue";
+    barWrapper.childNodes[right.index].style.backgroundColor = "blue";
   };
 
   const swapDivs = (left, right) => {
@@ -19,7 +21,7 @@ const visualsFunctions = (() => {
   };
 
   return {
-    handleVisuals,
+    handleHighlighting,
     swapDivs,
   };
 })();
