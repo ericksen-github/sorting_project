@@ -12,6 +12,7 @@ const sortFunctions = (() => {
     }
 
     mergeSort(unsortedArray);
+    visualsFunctions.resetTimeTracker();
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060

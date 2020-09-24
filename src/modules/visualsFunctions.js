@@ -1,6 +1,7 @@
+let timerTracker = 1;
+
 const visualsFunctions = (() => {
   const timeController = 50;
-  let timerTracker = 1;
 
   const handleHighlighting = (left, right) => {
     const barWrapper = document.getElementById("barWrapper");
@@ -25,7 +26,12 @@ const visualsFunctions = (() => {
     }, timeController * timerTracker);
   };
 
+  const resetTimeTracker = () => {
+    timerTracker = 1; // resets time tracker to allow new sorts without reloading page
+  };
+
   return {
+    resetTimeTracker,
     handleHighlighting,
     swapDivs,
   };
