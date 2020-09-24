@@ -11,7 +11,7 @@ const sortFunctions = (() => {
       unsortedArray.push({ value: newArray[i], index: [i][0] });
     }
 
-    console.log(mergeSort(unsortedArray), " end preMerge");
+    mergeSort(unsortedArray);
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
@@ -55,9 +55,10 @@ const sortFunctions = (() => {
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original index
     while (leftIndex < left.length && rightIndex < right.length) {
-      visualsFunctions.handleHighlighting(left[leftIndex], right[rightIndex]);
-
-      console.log("comparing ", left[leftIndex], " vs ", right[rightIndex]);
+      visualsFunctions.handleHighlighting(
+        left[leftIndex].index,
+        right[rightIndex].index
+      );
 
       if (left[leftIndex].value < right[rightIndex].value) {
         // updates div with same value to new index location and iterates
@@ -88,7 +89,7 @@ const sortFunctions = (() => {
       endArray[endArray.length - 1].index = highestIndex;
     }
 
-    console.log(JSON.stringify(endArray), " end array after if");
+    console.log(endArray);
 
     return endArray;
   }

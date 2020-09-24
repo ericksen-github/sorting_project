@@ -3,8 +3,8 @@ let newArray;
 const generateArrayFunctions = (() => {
   const generateArray = () => {
     const minNum = 5; // used to set range of array numbers
-    const maxNum = 20;
-    const length = 5; // total array size
+    const maxNum = 100;
+    const length = 100; // total array size
 
     newArray = Array.from({ length: length }, () =>
       Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)

@@ -1,12 +1,20 @@
 const visualsFunctions = (() => {
+  const timeController = 50;
+  let timerTracker = 1;
+
   const handleHighlighting = (left, right) => {
     const barWrapper = document.getElementById("barWrapper");
+    setTimeout(() => {
+      barWrapper.childNodes[left].style.backgroundColor = "red";
+      barWrapper.childNodes[right].style.backgroundColor = "red";
 
-    barWrapper.childNodes[left.index].style.backgroundColor = "red";
-    barWrapper.childNodes[right.index].style.backgroundColor = "red";
+      setTimeout(() => {
+        barWrapper.childNodes[left].style.backgroundColor = "blue";
+        barWrapper.childNodes[right].style.backgroundColor = "blue";
+      }, timeController);
+    }, timeController * timerTracker);
 
-    barWrapper.childNodes[left.index].style.backgroundColor = "blue";
-    barWrapper.childNodes[right.index].style.backgroundColor = "blue";
+    timerTracker++;
   };
 
   const swapDivs = (left, right) => {
