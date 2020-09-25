@@ -1,17 +1,20 @@
-let newArray;
+// variables used to control array size and length
+const minNum = 5; // lowest possible value (lower than 5 hard to see on DOM)
+const maxNum = 100; // highest possible value
+const length = 100; // total array size
+
+let newArray; // array that stores inital values
 
 const generateArrayFunctions = (() => {
+  // creates array of random values
   const generateArray = () => {
-    const minNum = 5; // used to set range of array numbers
-    const maxNum = 200;
-    const length = 100; // total array size
-
     newArray = Array.from({ length: length }, () =>
       Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)
     );
     createBars(newArray);
   };
 
+  // creates DOM bars based on array values
   const createBars = (newArray) => {
     const container = document.getElementById("container");
     const barWrapper = document.createElement("div");

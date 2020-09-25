@@ -1,14 +1,17 @@
+// variables used to control timer functions
+const timeController = 1;
 let timerTracker = 1;
 
 const visualsFunctions = (() => {
-  const timeController = 50;
-
   const handleHighlighting = (first, second) => {
     const barWrapper = document.getElementById("barWrapper");
 
     const one = first.index;
     const two = second.index;
 
+    // timeouts used to slow down animations for user to see
+    // timerTracker increases the timeout for each iteration so that the
+    // animations are spaced correctly/not overlapping
     setTimeout(() => {
       barWrapper.childNodes[one].style.backgroundColor = "red";
       barWrapper.childNodes[two].style.backgroundColor = "red";
@@ -23,8 +26,6 @@ const visualsFunctions = (() => {
   };
 
   const swapDivs = (current, lowest, other) => {
-    console.log(current, " vs ", other);
-
     setTimeout(() => {
       const barWrapper = document.getElementById("barWrapper");
 
@@ -32,8 +33,10 @@ const visualsFunctions = (() => {
     }, timeController * timerTracker);
   };
 
+  // resets timerTracker so that timeouts don't keep stacking on
+  // subsequent array sorts
   const resetTimeTracker = () => {
-    timerTracker = 1; // resets time tracker to allow new sorts without reloading page
+    timerTracker = 1;
   };
 
   return {

@@ -6,12 +6,13 @@ const sortFunctions = (() => {
   const preMerge = (newArray) => {
     let unsortedArray = [];
 
-    // i comes out as array on index, needs [0] to grab just num
+    // when setting index, i is an array of length 1. need [i][0]
+    // to grab just the value of i to avoid storing the i array in index
     for (let i = 0; i < newArray.length; i++) {
       unsortedArray.push({ value: newArray[i], index: [i][0] });
     }
 
-    mergeSort(unsortedArray);
+    console.log(mergeSort(unsortedArray));
     visualsFunctions.resetTimeTracker();
   };
 
@@ -54,7 +55,7 @@ const sortFunctions = (() => {
     const highestIndex = Math.max(...lengthArray);
 
     // We will concatenate values into the resultArray in order
-    // compares the value of each while ignoring the original index
+    // compares the value of each while ignoring the original location index
     while (leftIndex < left.length && rightIndex < right.length) {
       visualsFunctions.handleHighlighting(left[leftIndex], right[rightIndex]);
 
