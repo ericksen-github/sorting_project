@@ -1,30 +1,50 @@
 // variables used to control timer functions
-const timeController = 500; // 50 recommended
+const timeController = 3; // 50 recommended
 let timerTracker = 1;
+
+let counter = 1;
 
 const visualsFunctions = (() => {
   const handleHighlighting = (first, second, lowestIndex) => {
     const barWrapper = document.getElementById("barWrapper");
 
-    const one = first.index;
-    const two = second.index;
+    const oneBar = barWrapper.childNodes[first.index];
+    const twoBar = barWrapper.childNodes[second.index];
+
     const height = first.value;
 
     // timeouts used to slow down animations for user to see
     // timerTracker increases the timeout for each iteration so that the
     // animations are spaced correctly/not overlapping
+
     setTimeout(() => {
-      barWrapper.childNodes[one].style.backgroundColor = "red";
-      barWrapper.childNodes[two].style.backgroundColor = "red";
+      oneBar.style.backgroundColor = "red";
+      twoBar.style.backgroundColor = "red";
 
       barWrapper.childNodes[lowestIndex].style.height = `${height}px`;
 
+      console.log(
+        oneBar.style.backgroundColor,
+        twoBar.style.backgroundColor,
+        " bg after red assign"
+      );
+
+      console.log(counter, " counter");
+
       setTimeout(() => {
-        barWrapper.childNodes[one].style.backgroundColor = "blue";
-        barWrapper.childNodes[two].style.backgroundColor = "blue";
+        oneBar.style.backgroundColor = "blue";
+        twoBar.style.backgroundColor = "blue";
+
+        console.log(
+          oneBar.style.backgroundColor,
+          twoBar.style.backgroundColor,
+          " bg after red remove"
+        );
+
+        console.log(counter, " counter");
+        counter++;
       }, timeController);
     }, timeController * timerTracker);
-
     timerTracker++;
   };
 
@@ -34,6 +54,7 @@ const visualsFunctions = (() => {
 
       barWrapper.childNodes[lowestIndex].style.height = `${current.value}px`;
     }, timeController * timerTracker);
+    timerTracker++;
   };
 
   // resets timerTracker so that timeouts don't keep stacking on

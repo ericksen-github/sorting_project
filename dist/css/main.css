@@ -35,6 +35,5 @@ body {
 .bar {
   display: inline-block;
   width: 3px;
-  background-color: blue;
   margin: 1px;
 }

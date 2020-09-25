@@ -4,6 +4,7 @@ const sortFunctions = (() => {
   // takes generated array and pushes each value and the index of its
   // location in the original array into unsortedArray
   const preMerge = (newArray) => {
+    visualsFunctions.resetTimeTracker();
     let unsortedArray = [];
 
     // when setting index, i is an array of length 1. need [i][0]
@@ -13,7 +14,6 @@ const sortFunctions = (() => {
     }
 
     console.log(mergeSort(unsortedArray));
-    visualsFunctions.resetTimeTracker();
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060

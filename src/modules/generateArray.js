@@ -25,6 +25,7 @@ const generateArrayFunctions = (() => {
       const newBar = document.createElement("div");
       newBar.classList.add("bar");
       newBar.style.height = `${newArray[i]}px`; // sets bar height to generated value
+      newBar.style.backgroundColor = "blue";
       barWrapper.appendChild(newBar);
     }
   };
