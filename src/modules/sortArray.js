@@ -52,18 +52,15 @@ const sortFunctions = (() => {
     });
 
     let lowestIndex = Math.min(...lengthArray);
-    const highestIndex = Math.max(...lengthArray);
 
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
     while (leftIndex < left.length && rightIndex < right.length) {
-      visualsFunctions.handleHighlighting(left[leftIndex], right[rightIndex]);
-
       if (left[leftIndex].value < right[rightIndex].value) {
-        visualsFunctions.swapDivs(
+        visualsFunctions.handleHighlighting(
           left[leftIndex],
-          lowestIndex,
-          right[rightIndex]
+          right[rightIndex],
+          lowestIndex
         );
 
         // updates div with same value to new index location and iterates
@@ -74,10 +71,10 @@ const sortFunctions = (() => {
         resultArray.push(left[leftIndex]);
         leftIndex++; // move left array cursor
       } else {
-        visualsFunctions.swapDivs(
+        visualsFunctions.handleHighlighting(
           right[rightIndex],
-          lowestIndex,
-          left[leftIndex]
+          left[leftIndex],
+          lowestIndex
         );
 
         right[rightIndex].index = lowestIndex;
