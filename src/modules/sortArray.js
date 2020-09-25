@@ -88,27 +88,34 @@ const sortFunctions = (() => {
       }
     } // end of while
 
-    let endArray = resultArray
-      .concat(left.slice(leftIndex))
-      .concat(right.slice(rightIndex));
+    let leftEnd = left.slice(leftIndex);
+    let rightEnd = right.slice(rightIndex);
 
-    // this is needed because at the end of the merge, it concats the two arrays
-    // sometimes leaving any leftover values unindexed. this makes sure the last two
-    // indexes are the highest 2 in the current range
-    if (endArray.length > 1) {
-      visualsFunctions.swapDivs(
-        endArray[endArray.length - 2],
-        highestIndex - 1
-      );
-
-      visualsFunctions.swapDivs(endArray[endArray.length - 1], highestIndex);
-
-      endArray[endArray.length - 2].index = highestIndex - 1;
-      endArray[endArray.length - 1].index = highestIndex;
+    if (leftEnd.length > 0) {
+      leftEnd = handleEndArray(leftEnd, lowestIndex);
+    } else {
+      rightEnd = handleEndArray(rightEnd, lowestIndex);
     }
+
+    // concat returns an array, so its result is assigned to endArray
+    let endArray = resultArray.concat(leftEnd).concat(rightEnd);
 
     return endArray;
   }
+
+  // at least 1 value is always left unindexed in either left or right
+  // this takes remaining values, indexes them, swaps div locations, and
+  // returns the updated array to the main function
+  const handleEndArray = (current, lowestIndex) => {
+    for (let i = 0; i < current.length; i++) {
+      visualsFunctions.swapDivs(current[i], lowestIndex);
+
+      current[i].index = lowestIndex;
+      lowestIndex++;
+    }
+
+    return current;
+  };
 
   return {
     preMerge,

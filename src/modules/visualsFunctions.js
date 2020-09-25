@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 1;
+const timeController = 50;
 let timerTracker = 1;
 
 const visualsFunctions = (() => {
@@ -25,7 +25,7 @@ const visualsFunctions = (() => {
     timerTracker++;
   };
 
-  const swapDivs = (current, lowest, other) => {
+  const swapDivs = (current, lowest) => {
     setTimeout(() => {
       const barWrapper = document.getElementById("barWrapper");
 
