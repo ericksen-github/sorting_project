@@ -1,5 +1,8 @@
 import { visualsFunctions } from "./visualsFunctions";
 
+const timeController = 10; // 10 recommended
+let timerTracker = 1;
+
 const sortFunctions = (() => {
   // takes generated array and pushes each value and the index of its
   // location in the original array into unsortedArray
@@ -34,8 +37,8 @@ const sortFunctions = (() => {
   // Merge the two arrays: left and right
   function merge(left, right) {
     let resultArray = [],
-      leftIndex = 0,
-      rightIndex = 0;
+      k = 0, // leftIndex
+      j = 0; // rightIndex
 
     // grabs index values from left and right and finds the lowest
     // and highest indexes to know which div range to alter
@@ -55,38 +58,35 @@ const sortFunctions = (() => {
 
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex].value < right[rightIndex].value) {
-        visualsFunctions.handleHighlighting(
-          left[leftIndex],
-          right[rightIndex],
-          lowestIndex
-        );
+    while (k < left.length && j < right.length) {
+      handleAllAnimations("red", left[k], right[j], lowestIndex);
+
+      if (left[k].value < right[j].value) {
+        handleAllAnimations("divSize", left[k], right[j], lowestIndex);
+        handleAllAnimations("blue", left[k], right[j], lowestIndex);
 
         // updates div with same value to new index location and iterates
         // lowestIndex by 1 to move on to next index location
-        left[leftIndex].index = lowestIndex;
+        left[k].index = lowestIndex;
         lowestIndex++;
 
-        resultArray.push(left[leftIndex]);
-        leftIndex++; // move left array cursor
+        resultArray.push(left[k]);
+
+        k++; // move left array cursor
       } else {
-        visualsFunctions.handleHighlighting(
-          right[rightIndex],
-          left[leftIndex],
-          lowestIndex
-        );
+        handleAllAnimations("divSize", right[j], left[k], lowestIndex);
+        handleAllAnimations("blue", left[k], right[j], lowestIndex);
 
-        right[rightIndex].index = lowestIndex;
+        right[j].index = lowestIndex;
         lowestIndex++;
 
-        resultArray.push(right[rightIndex]);
-        rightIndex++; // move right array cursor
+        resultArray.push(right[j]);
+        j++; // move right array cursor
       }
     } // end of while
 
-    let leftEnd = left.slice(leftIndex);
-    let rightEnd = right.slice(rightIndex);
+    let leftEnd = left.slice(k);
+    let rightEnd = right.slice(j);
 
     if (leftEnd.length > 0) {
       leftEnd = handleEndArray(leftEnd, lowestIndex);
@@ -105,13 +105,36 @@ const sortFunctions = (() => {
   // returns the updated array to the main function
   const handleEndArray = (current, lowestIndex) => {
     for (let i = 0; i < current.length; i++) {
-      visualsFunctions.swapDivs(current[i], lowestIndex);
+      // send current[i] twice to account for second required input for function
+      handleAllAnimations("divSize", current[i], current[i], lowestIndex);
 
       current[i].index = lowestIndex;
       lowestIndex++;
     }
 
     return current;
+  };
+
+  const handleAllAnimations = (type, first, second, lowestIndex) => {
+    const barWrapper = document.getElementById("barWrapper");
+
+    const oneBar = barWrapper.childNodes[first.index];
+    const twoBar = barWrapper.childNodes[second.index];
+
+    const height = first.value;
+
+    setTimeout(() => {
+      if (type == "red") {
+        oneBar.style.backgroundColor = "red";
+        twoBar.style.backgroundColor = "red";
+      } else if (type == "blue") {
+        oneBar.style.backgroundColor = "blue";
+        twoBar.style.backgroundColor = "blue";
+      } else if (type == "divSize") {
+        barWrapper.childNodes[lowestIndex].style.height = `${height}px`;
+      }
+    }, timeController * timerTracker);
+    timerTracker++;
   };
 
   return {
