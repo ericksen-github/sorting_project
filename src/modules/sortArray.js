@@ -1,13 +1,10 @@
-import { visualsFunctions } from "./visualsFunctions";
-
-const timeController = 10; // 10 recommended
-let timerTracker = 1;
+import { visuals } from "./visuals";
 
 const sortFunctions = (() => {
   // takes generated array and pushes each value and the index of its
   // location in the original array into unsortedArray
   const preMerge = (newArray) => {
-    visualsFunctions.resetTimeTracker();
+    visuals.resetTimeTracker();
     let unsortedArray = [];
 
     // when setting index, i is an array of length 1. need [i][0]
@@ -15,8 +12,6 @@ const sortFunctions = (() => {
     for (let i = 0; i < newArray.length; i++) {
       unsortedArray.push({ value: newArray[i], index: [i][0] });
     }
-
-    console.log(mergeSort(unsortedArray));
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
@@ -59,11 +54,11 @@ const sortFunctions = (() => {
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
     while (k < left.length && j < right.length) {
-      handleAllAnimations("red", left[k], right[j], lowestIndex);
+      visuals.runAnimations("red", left[k], right[j], lowestIndex);
 
       if (left[k].value < right[j].value) {
-        handleAllAnimations("divSize", left[k], right[j], lowestIndex);
-        handleAllAnimations("blue", left[k], right[j], lowestIndex);
+        visuals.runAnimations("divSize", left[k], right[j], lowestIndex);
+        visuals.runAnimations("blue", left[k], right[j], lowestIndex);
 
         // updates div with same value to new index location and iterates
         // lowestIndex by 1 to move on to next index location
@@ -74,8 +69,8 @@ const sortFunctions = (() => {
 
         k++; // move left array cursor
       } else {
-        handleAllAnimations("divSize", right[j], left[k], lowestIndex);
-        handleAllAnimations("blue", left[k], right[j], lowestIndex);
+        visuals.runAnimations("divSize", right[j], left[k], lowestIndex);
+        visuals.runAnimations("blue", left[k], right[j], lowestIndex);
 
         right[j].index = lowestIndex;
         lowestIndex++;
@@ -106,35 +101,13 @@ const sortFunctions = (() => {
   const handleEndArray = (current, lowestIndex) => {
     for (let i = 0; i < current.length; i++) {
       // send current[i] twice to account for second required input for function
-      handleAllAnimations("divSize", current[i], current[i], lowestIndex);
+      visuals.runAnimations("divSize", current[i], current[i], lowestIndex);
 
       current[i].index = lowestIndex;
       lowestIndex++;
     }
 
     return current;
-  };
-
-  const handleAllAnimations = (type, first, second, lowestIndex) => {
-    const barWrapper = document.getElementById("barWrapper");
-
-    const oneBar = barWrapper.childNodes[first.index];
-    const twoBar = barWrapper.childNodes[second.index];
-
-    const height = first.value;
-
-    setTimeout(() => {
-      if (type == "red") {
-        oneBar.style.backgroundColor = "red";
-        twoBar.style.backgroundColor = "red";
-      } else if (type == "blue") {
-        oneBar.style.backgroundColor = "blue";
-        twoBar.style.backgroundColor = "blue";
-      } else if (type == "divSize") {
-        barWrapper.childNodes[lowestIndex].style.height = `${height}px`;
-      }
-    }, timeController * timerTracker);
-    timerTracker++;
   };
 
   return {

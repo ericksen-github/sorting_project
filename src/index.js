@@ -7,7 +7,6 @@ document.getElementById("createNewArray").addEventListener("click", () => {
 });
 
 document.getElementById("mergeSort").addEventListener("click", () => {
-  console.log("click on merge");
   sortFunctions.preMerge(newArray);
 });
 
