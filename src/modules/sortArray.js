@@ -12,6 +12,8 @@ const sortFunctions = (() => {
     for (let i = 0; i < newArray.length; i++) {
       unsortedArray.push({ value: newArray[i], index: [i][0] });
     }
+
+    mergeSort(unsortedArray);
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
