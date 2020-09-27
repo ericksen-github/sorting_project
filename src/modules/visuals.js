@@ -24,7 +24,18 @@ const visuals = (() => {
         barWrapper.childNodes[lowestIndex].style.height = `${height}px`;
       }
     }, timeController * timerTracker);
-    timerTracker++;
+
+    handleTimerSpeed();
+  };
+
+  const handleTimerSpeed = () => {
+    if (timerTracker < 200) {
+      timerTracker++;
+    } else if (timerTracker < 300) {
+      timerTracker = timerTracker + 0.5;
+    } else {
+      timerTracker = timerTracker + 0.1;
+    }
   };
 
   // resets timerTracker so that timeouts don't keep stacking on
