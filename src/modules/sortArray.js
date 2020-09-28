@@ -37,21 +37,7 @@ const sortFunctions = (() => {
       k = 0, // leftIndex
       j = 0; // rightIndex
 
-    // grabs index values from left and right and finds the lowest
-    // and highest indexes to know which div range to alter
-    // for ex if low = 4 high = 7, the values of the numbers in left and right
-    // correspond to div locations 4 through 7. this means that when assigning
-    // new indexes to DOM elements, only the indexes associated with those values are
-    // available to assign.
-    let lengthArray = [];
-    left.forEach((ele) => {
-      lengthArray.push(ele.index);
-    });
-    right.forEach((ele) => {
-      lengthArray.push(ele.index);
-    });
-
-    let lowestIndex = Math.min(...lengthArray);
+    let lowestIndex = findLowestIndex(left, right);
 
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
@@ -110,6 +96,23 @@ const sortFunctions = (() => {
     }
 
     return current;
+  };
+
+  // grabs index values from left and right and finds the lowest index to
+  // know which div range to alter. for ex if low = 4, , the values of
+  // the numbers in left and right correspond to div locations starting at 4.
+  // this means that when assigning new indexes to DOM elements, only the indexes
+  // associated with those values are available to assign.
+  const findLowestIndex = (left, right) => {
+    let bothArrays = [];
+    left.forEach((ele) => {
+      bothArrays.push(ele.index);
+    });
+    right.forEach((ele) => {
+      bothArrays.push(ele.index);
+    });
+
+    return Math.min(...bothArrays);
   };
 
   return {

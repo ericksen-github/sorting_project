@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 50; // 50 recommended
+const timeController = 10; // 50 recommended
 let timerTracker = 1;
 
 const visuals = (() => {
@@ -25,7 +25,8 @@ const visuals = (() => {
       }
     }, timeController * timerTracker);
 
-    handleTimerSpeed();
+    timerTracker++;
+    // handleTimerSpeed();
   };
 
   const handleTimerSpeed = () => {
