@@ -33,52 +33,46 @@ const sortFunctions = (() => {
 
   // Merge the two arrays: left and right
   function merge(left, right) {
-    let resultArray = [],
-      k = 0, // leftIndex
-      j = 0; // rightIndex
+    let resultArray = [];
 
     let lowestIndex = findLowestIndex(left, right);
 
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
-    while (k < left.length && j < right.length) {
-      visuals.runAnimations("red", left[k], right[j], lowestIndex);
+    while (0 < left.length && 0 < right.length) {
+      visuals.runAnimations("red", left[0], right[0], lowestIndex);
 
-      if (left[k].value < right[j].value) {
-        visuals.runAnimations("divSize", left[k], right[j], lowestIndex);
-        visuals.runAnimations("blue", left[k], right[j], lowestIndex);
+      if (left[0].value < right[0].value) {
+        visuals.runAnimations("divSize", left[0], right[0], lowestIndex);
+        visuals.runAnimations("blue", left[0], right[0], lowestIndex);
 
         // updates div with same value to new index location and iterates
         // lowestIndex by 1 to move on to next index location
-        left[k].index = lowestIndex;
+        left[0].index = lowestIndex;
         lowestIndex++;
 
-        resultArray.push(left[k]);
-
-        k++; // move left array cursor
+        resultArray.push(left[0]);
+        left.shift(); // removes value that was pushed to results
       } else {
-        visuals.runAnimations("divSize", right[j], left[k], lowestIndex);
-        visuals.runAnimations("blue", left[k], right[j], lowestIndex);
+        visuals.runAnimations("divSize", right[0], left[0], lowestIndex);
+        visuals.runAnimations("blue", left[0], right[0], lowestIndex);
 
-        right[j].index = lowestIndex;
+        right[0].index = lowestIndex;
         lowestIndex++;
 
-        resultArray.push(right[j]);
-        j++; // move right array cursor
+        resultArray.push(right[0]);
+        right.shift(); // removes value that was pushed to results
       }
     } // end of while
 
-    let leftEnd = left.slice(k);
-    let rightEnd = right.slice(j);
-
-    if (leftEnd.length > 0) {
-      leftEnd = handleEndArray(leftEnd, lowestIndex);
+    if (left.length > 0) {
+      left = handleEndArray(left, lowestIndex);
     } else {
-      rightEnd = handleEndArray(rightEnd, lowestIndex);
+      right = handleEndArray(right, lowestIndex);
     }
 
     // concat returns an array, so its result is assigned to endArray
-    let endArray = resultArray.concat(leftEnd).concat(rightEnd);
+    let endArray = resultArray.concat(left).concat(right);
 
     return endArray;
   }
