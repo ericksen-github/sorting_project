@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 10; // 50 recommended
+const timeController = 50; // 50 recommended
 let timerTracker = 1;
 
 const visuals = (() => {
@@ -29,6 +29,19 @@ const visuals = (() => {
     // handleTimerSpeed();
   };
 
+  const shiftDivs = (shiftArray) => {
+    const barWrapper = document.getElementById("barWrapper");
+
+    setTimeout(() => {
+      for (let i = 0; i < shiftArray.length; i++) {
+        barWrapper.childNodes[
+          shiftArray[i].index
+        ].style.height = `${shiftArray[i].value}px`;
+      }
+    }, timeController * timerTracker);
+    timerTracker++;
+  };
+
   const handleTimerSpeed = () => {
     if (timerTracker < 200) {
       timerTracker++;
@@ -48,6 +61,7 @@ const visuals = (() => {
   return {
     resetTimeTracker,
     runAnimations,
+    shiftDivs,
   };
 })();
 export { visuals };

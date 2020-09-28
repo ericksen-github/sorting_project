@@ -40,20 +40,45 @@ const sortFunctions = (() => {
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
     while (0 < left.length && 0 < right.length) {
+      let shiftArray = [];
+
       visuals.runAnimations("red", left[0], right[0], lowestIndex);
 
       if (left[0].value < right[0].value) {
-        visuals.runAnimations("divSize", left[0], right[0], lowestIndex);
-        visuals.runAnimations("blue", left[0], right[0], lowestIndex);
-
         // updates div with same value to new index location and iterates
         // lowestIndex by 1 to move on to next index location
+
+        for (let i = 1; i < left.length; i++) {
+          if (left[0].index == left[i] && left[0].value == left[i].value) {
+            visuals.shiftDivs(shiftArray);
+            visuals.runAnimations("blue", left[0], right[0], lowestIndex);
+            visuals.runAnimations("divSize", left[0], right[0], lowestIndex);
+          } else {
+            left[i].index = left[i].index + 1;
+            shiftArray.push(left[i]);
+          }
+        }
+
+        visuals.runAnimations("blue", left[0], right[0], lowestIndex);
+        visuals.runAnimations("divSize", left[0], right[0], lowestIndex);
+
         left[0].index = lowestIndex;
         lowestIndex++;
 
         resultArray.push(left[0]);
         left.shift(); // removes value that was pushed to results
       } else {
+        for (let i = 1; i < right.length; i++) {
+          if (right[0].index == right[i] && right[0].value == right[i].value) {
+            visuals.shiftDivs(shiftArray);
+            visuals.runAnimations("blue", right[0], left[0], lowestIndex);
+            visuals.runAnimations("divSize", right[0], left[0], lowestIndex);
+          } else {
+            right[i].index = right[i].index + 1;
+            shiftArray.push(right[i]);
+          }
+        }
+
         visuals.runAnimations("divSize", right[0], left[0], lowestIndex);
         visuals.runAnimations("blue", left[0], right[0], lowestIndex);
 
