@@ -69,7 +69,7 @@ const sortFunctions = (() => {
         for (let i = 0; i < left.length; i++) {
           left[i].index = left[i].index + 1;
 
-          const ele = left[i];
+          const ele = { value: left[i].value, index: left[i].index };
 
           shiftArray.push(ele);
         }
