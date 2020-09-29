@@ -64,46 +64,23 @@ const sortFunctions = (() => {
         resultArray.push(right[0]);
         right.shift(); // removes value that was pushed to results
 
+        // create array of objs to send to shiftDivs to move the entire range of
+        // divs/values that werent pushed
         let shiftArray = [];
-
         for (let i = 0; i < left.length; i++) {
           left[i].index = left[i].index + 1;
-
           const ele = { value: left[i].value, index: left[i].index };
-
           shiftArray.push(ele);
         }
-
-        visuals.shiftDivs(shiftArray.slice(0));
+        visuals.shiftDivs(shiftArray);
       }
     } // end of while
-
-    // if (left.length > 0) {
-    //   left = handleEndArray(left, lowestIndex);
-    // } else {
-    //   right = handleEndArray(right, lowestIndex);
-    // }
 
     // concat returns an array, so its result is assigned to endArray
     let endArray = resultArray.concat(left).concat(right);
 
     return endArray;
   }
-
-  // at least 1 value is always left unindexed in either left or right
-  // this takes remaining values, indexes them, swaps div locations, and
-  // returns the updated array to the main function
-  const handleEndArray = (current, lowestIndex) => {
-    for (let i = 0; i < current.length; i++) {
-      // send current[i] twice to account for second required input for function
-      visuals.runAnimations("divSize", current[i], current[i], lowestIndex);
-
-      current[i].index = lowestIndex;
-      lowestIndex++;
-    }
-
-    return current;
-  };
 
   // grabs index values from left and right and finds the lowest index to
   // know which div range to alter. for ex if low = 4, , the values of
