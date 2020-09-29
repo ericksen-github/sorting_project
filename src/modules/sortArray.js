@@ -35,7 +35,8 @@ const sortFunctions = (() => {
   function merge(left, right) {
     let resultArray = [];
 
-    let lowestIndex = findLowestIndex(left, right);
+    // left[0] is always lowest index in range
+    let lowestIndex = left[0].index;
 
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
@@ -43,21 +44,19 @@ const sortFunctions = (() => {
       visuals.runAnimations("red", left[0], right[0], lowestIndex);
 
       if (left[0].value < right[0].value) {
-        // updates div with same value to new index location and iterates
-        // lowestIndex by 1 to move on to next index location
-
         visuals.runAnimations("blue", left[0], right[0], lowestIndex);
         visuals.runAnimations("divSize", left[0], right[0], lowestIndex);
 
-        left[0].index = lowestIndex;
+        // left[0] is already at lowest index, still iterate for right side
         lowestIndex++;
-
         resultArray.push(left[0]);
         left.shift(); // removes value that was pushed to results
       } else {
         visuals.runAnimations("divSize", right[0], left[0], lowestIndex);
         visuals.runAnimations("blue", left[0], right[0], lowestIndex);
 
+        // updates div with same value to new index location and iterates
+        // lowestIndex by 1 to move on to next index location
         right[0].index = lowestIndex;
         lowestIndex++;
 
@@ -81,23 +80,6 @@ const sortFunctions = (() => {
 
     return endArray;
   }
-
-  // grabs index values from left and right and finds the lowest index to
-  // know which div range to alter. for ex if low = 4, , the values of
-  // the numbers in left and right correspond to div locations starting at 4.
-  // this means that when assigning new indexes to DOM elements, only the indexes
-  // associated with those values are available to assign.
-  const findLowestIndex = (left, right) => {
-    let bothArrays = [];
-    left.forEach((ele) => {
-      bothArrays.push(ele.index);
-    });
-    right.forEach((ele) => {
-      bothArrays.push(ele.index);
-    });
-
-    return Math.min(...bothArrays);
-  };
 
   return {
     preMerge,

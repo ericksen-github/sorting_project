@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 10; // 50 recommended
+const timeController = 500; // 50 recommended
 let timerTracker = 1;
 
 const visuals = (() => {
