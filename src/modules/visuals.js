@@ -1,11 +1,11 @@
 // variables used to control timer functions
-const timeController = 50; // 50 recommended
+const timeController = 20; // 20 recommended
 let timerTracker = 1;
 
 const visuals = (() => {
   // combined all animations into one function to consolidate timer rounds
   // takes input for the type of animation it will output and adds to timer queue
-  const runAnimations = (type, first, second, lowestIndex) => {
+  const runAnimations = (type, first, second) => {
     const barWrapper = document.getElementById("barWrapper");
 
     const oneBar = barWrapper.childNodes[first.index];

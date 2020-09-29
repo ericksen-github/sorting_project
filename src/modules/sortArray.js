@@ -41,17 +41,17 @@ const sortFunctions = (() => {
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
     while (0 < left.length && 0 < right.length) {
-      visuals.runAnimations("red", left[0], right[0], lowestIndex);
+      visuals.runAnimations("red", left[0], right[0]);
 
       if (left[0].value < right[0].value) {
-        visuals.runAnimations("blue", left[0], right[0], lowestIndex);
+        visuals.runAnimations("blue", left[0], right[0]);
 
         // left[0] is already at lowest index, still iterate for right side
         lowestIndex++;
         resultArray.push(left[0]);
         left.shift(); // removes value that was pushed to results
       } else {
-        visuals.runAnimations("blue", left[0], right[0], lowestIndex);
+        visuals.runAnimations("blue", left[0], right[0]);
 
         // updates div with same value to new index location and iterates
         // lowestIndex by 1 to move on to next index location
@@ -60,27 +60,27 @@ const sortFunctions = (() => {
 
         resultArray.push(right[0]);
 
-        let shiftArray = [];
-        shiftArray.push({ value: right[0].value, index: right[0].index });
+        handleShiftArray(left, right);
+
         right.shift(); // removes value that was pushed to results
-
-        // create array of objs to send to shiftDivs to move the entire range of
-        // divs/values that werent pushed
-
-        for (let i = 0; i < left.length; i++) {
-          left[i].index = left[i].index + 1;
-          const ele = { value: left[i].value, index: left[i].index };
-          shiftArray.push(ele);
-        }
-        visuals.shiftDivs(shiftArray);
       }
     } // end of while
 
-    // concat returns an array, so its result is assigned to endArray
-    let endArray = resultArray.concat(left).concat(right);
-
-    return endArray;
+    return resultArray.concat(left).concat(right);
   }
+
+  // create array of objs to send to shiftDivs to move the entire range of
+  // divs/values that werent pushed
+  const handleShiftArray = (left, right) => {
+    let shiftArray = [];
+    shiftArray.push({ value: right[0].value, index: right[0].index });
+    for (let i = 0; i < left.length; i++) {
+      left[i].index = left[i].index + 1;
+      const ele = { value: left[i].value, index: left[i].index };
+      shiftArray.push(ele);
+    }
+    visuals.shiftDivs(shiftArray);
+  };
 
   return {
     preMerge,
