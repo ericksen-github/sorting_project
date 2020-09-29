@@ -45,14 +45,12 @@ const sortFunctions = (() => {
 
       if (left[0].value < right[0].value) {
         visuals.runAnimations("blue", left[0], right[0], lowestIndex);
-        visuals.runAnimations("divSize", left[0], right[0], lowestIndex);
 
         // left[0] is already at lowest index, still iterate for right side
         lowestIndex++;
         resultArray.push(left[0]);
         left.shift(); // removes value that was pushed to results
       } else {
-        visuals.runAnimations("divSize", right[0], left[0], lowestIndex);
         visuals.runAnimations("blue", left[0], right[0], lowestIndex);
 
         // updates div with same value to new index location and iterates
@@ -61,11 +59,14 @@ const sortFunctions = (() => {
         lowestIndex++;
 
         resultArray.push(right[0]);
+
+        let shiftArray = [];
+        shiftArray.push({ value: right[0].value, index: right[0].index });
         right.shift(); // removes value that was pushed to results
 
         // create array of objs to send to shiftDivs to move the entire range of
         // divs/values that werent pushed
-        let shiftArray = [];
+
         for (let i = 0; i < left.length; i++) {
           left[i].index = left[i].index + 1;
           const ele = { value: left[i].value, index: left[i].index };
