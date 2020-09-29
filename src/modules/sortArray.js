@@ -35,9 +35,6 @@ const sortFunctions = (() => {
   function merge(left, right) {
     let resultArray = [];
 
-    // left[0] is always lowest index in range
-    let lowestIndex = left[0].index;
-
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
     while (0 < left.length && 0 < right.length) {
@@ -46,18 +43,14 @@ const sortFunctions = (() => {
       if (left[0].value < right[0].value) {
         visuals.runAnimations("blue", left[0], right[0]);
 
-        // left[0] is already at lowest index, still iterate for right side
-        lowestIndex++;
         resultArray.push(left[0]);
         left.shift(); // removes value that was pushed to results
       } else {
         visuals.runAnimations("blue", left[0], right[0]);
 
-        // updates div with same value to new index location and iterates
-        // lowestIndex by 1 to move on to next index location
-        right[0].index = lowestIndex;
-        lowestIndex++;
-
+        // updates right[0].index to left[0].index which allows shiftDiv to put it
+        // in the correct/next location. left[0].index will always be the next location
+        right[0].index = left[0].index;
         resultArray.push(right[0]);
 
         handleShiftArray(left, right);
@@ -70,14 +63,15 @@ const sortFunctions = (() => {
   }
 
   // create array of objs to send to shiftDivs to move the entire range of
-  // divs/values that werent pushed
+  // divs/values that werent pushed. shifts only occur when right side is pushes as
+  // left side is already in correct index location when it is pushed
   const handleShiftArray = (left, right) => {
     let shiftArray = [];
     shiftArray.push({ value: right[0].value, index: right[0].index });
+
     for (let i = 0; i < left.length; i++) {
       left[i].index = left[i].index + 1;
-      const ele = { value: left[i].value, index: left[i].index };
-      shiftArray.push(ele);
+      shiftArray.push({ value: left[i].value, index: left[i].index });
     }
     visuals.shiftDivs(shiftArray);
   };
