@@ -1,7 +1,7 @@
 // variables used to control array size and length
-const minNum = 5; // lowest possible value (lower than 5 hard to see on DOM)
-const maxNum = 100; // highest possible value
-const length = 50; // total array size
+const minNum = 25; // lowest possible value (lower than 5 hard to see on DOM)
+const maxNum = 200; // highest possible value
+const length = 100; // total array size
 
 let newArray; // array that stores inital values
 
@@ -25,7 +25,7 @@ const generateArrayFunctions = (() => {
       const newBar = document.createElement("div");
       newBar.classList.add("bar");
       newBar.style.height = `${newArray[i]}px`; // sets bar height to generated value
-      newBar.style.backgroundColor = "blue";
+      newBar.style.backgroundColor = "rgb(68, 68, 206)";
       barWrapper.appendChild(newBar);
     }
   };

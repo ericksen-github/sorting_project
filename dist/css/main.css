@@ -1,5 +1,6 @@
 body {
   overflow-x: hidden;
+  background-color: rgb(241, 241, 241);
 }
 
 #menu {
@@ -34,6 +35,6 @@ body {
 
 .bar {
   display: inline-block;
-  width: 4px;
+  width: 7px;
   margin: 1px;
 }

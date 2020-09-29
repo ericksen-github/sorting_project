@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 20; // 20 recommended
+const timeController = 50; // 50 recommended
 let timerTracker = 1;
 
 const visuals = (() => {
@@ -11,20 +11,17 @@ const visuals = (() => {
     const oneBar = barWrapper.childNodes[first.index];
     const twoBar = barWrapper.childNodes[second.index];
 
-    const height = first.value;
-
     setTimeout(() => {
       if (type == "red") {
         oneBar.style.backgroundColor = "red";
         twoBar.style.backgroundColor = "red";
       } else if (type == "blue") {
-        oneBar.style.backgroundColor = "blue";
-        twoBar.style.backgroundColor = "blue";
+        oneBar.style.backgroundColor = "rgb(68, 68, 206)";
+        twoBar.style.backgroundColor = "rgb(68, 68, 206)";
       }
     }, timeController * timerTracker);
 
-    timerTracker++;
-    // handleTimerSpeed();
+    handleTimerSpeed();
   };
 
   const shiftDivs = (shiftArray) => {
@@ -38,16 +35,14 @@ const visuals = (() => {
         barWrapper.childNodes[index].style.height = `${height}px`;
       }
     }, timeController * timerTracker);
-    timerTracker++;
+    handleTimerSpeed();
   };
 
   const handleTimerSpeed = () => {
-    if (timerTracker < 200) {
+    if (timerTracker < 500) {
       timerTracker++;
-    } else if (timerTracker < 300) {
-      timerTracker = timerTracker + 0.5;
     } else {
-      timerTracker = timerTracker + 0.1;
+      timerTracker = timerTracker + 0.75;
     }
   };
 
