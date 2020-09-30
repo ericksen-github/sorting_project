@@ -14,6 +14,8 @@ const sortFunctions = (() => {
     }
 
     mergeSort(unsortedArray);
+
+    disableButtons(visuals.grabTimerValue());
   };
 
   // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
@@ -74,6 +76,23 @@ const sortFunctions = (() => {
       shiftArray.push({ value: left[i].value, index: left[i].index });
     }
     visuals.shiftDivs(shiftArray);
+  };
+
+  const disableButtons = (timeArray) => {
+    const createArrayButton = document.getElementById("createNewArray");
+    const mergeButton = document.getElementById("mergeSort");
+
+    const buttonsArray = [createArrayButton, mergeButton];
+
+    buttonsArray.forEach((btn) => {
+      btn.classList.add("disable");
+    });
+
+    setTimeout(() => {
+      buttonsArray.forEach((btn) => {
+        btn.classList.remove("disable");
+      });
+    }, timeArray[0] * timeArray[1] + 100); // timeTracker * timeController
   };
 
   return {

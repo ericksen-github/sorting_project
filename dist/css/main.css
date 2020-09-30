@@ -13,7 +13,7 @@ body {
   border: 1px solid #1f2f47;
 }
 
-#menu p {
+.button {
   display: inline-block;
   padding: 1rem;
   text-align: center;
@@ -21,7 +21,7 @@ body {
   text-decoration: none;
 }
 
-#menu p:hover {
+.button:hover {
   color: black;
   background-color: #8da6cf;
 }
@@ -37,4 +37,9 @@ body {
   display: inline-block;
   width: 7px;
   margin: 1px;
+}
+
+.disable {
+  pointer-events: none;
+  color: rgb(255, 0, 0);
 }
