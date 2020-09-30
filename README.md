@@ -12,6 +12,7 @@ This project demostrates visually how various sorting move through data. I felt 
 Thanks to:
 
 - Tim Han's article on [Merge Sort](https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060)
+- Kyle Jensen's article on [Bubble Sort](https://medium.com/javascript-algorithms/javascript-algorithms-bubble-sort-3d27f285c3b2)
 
 ## URL
 
