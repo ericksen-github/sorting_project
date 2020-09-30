@@ -5,6 +5,7 @@ This project demostrates visually how various sorting move through data. I felt 
 ## Sort Methods
 
 - Merge Sort
+- Bubble Sort
 
 ## Acknowledgements
 
