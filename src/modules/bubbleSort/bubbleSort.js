@@ -1,8 +1,10 @@
-const timeController = 10; // 40 recommended
+const timeController = 3; // 3 recommended
 let timerTracker = 1;
 const bubbleSort = (() => {
   const preBubble = (unsortedArray) => {
-    console.log(sort(unsortedArray));
+    resetTimeTracker();
+    sort(unsortedArray);
+    disableButtons();
   };
 
   const sort = (unsortedArray) => {
@@ -47,7 +49,43 @@ const bubbleSort = (() => {
         twoBar.style.height = `${second}px`;
       }
     }, timeController * timerTracker);
-    timerTracker++;
+    handleTimerSpeed();
+  };
+
+  const handleTimerSpeed = () => {
+    if (timerTracker < 2500) {
+      timerTracker++;
+    } else if (timerTracker < 5000) {
+      timerTracker = timerTracker + 0.75;
+    } else if (timerTracker < 7500) {
+      timerTracker = timerTracker + 0.5;
+    } else {
+      timerTracker = timerTracker + 0.25;
+    }
+  };
+
+  // resets timerTracker so that timeouts don't keep stacking on
+  // subsequent array sorts
+  const resetTimeTracker = () => {
+    timerTracker = 1;
+  };
+
+  const disableButtons = () => {
+    const createArrayButton = document.getElementById("createNewArray");
+    const mergeButton = document.getElementById("mergeSort");
+    const bubbleButton = document.getElementById("bubbleSort");
+
+    const buttonsArray = [createArrayButton, mergeButton, bubbleButton];
+
+    buttonsArray.forEach((btn) => {
+      btn.classList.add("disable");
+    });
+
+    setTimeout(() => {
+      buttonsArray.forEach((btn) => {
+        btn.classList.remove("disable");
+      });
+    }, timeController * timerTracker + 100); // timeTracker * timeController
   };
 
   return {
