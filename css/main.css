@@ -31,7 +31,7 @@ body {
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  height: 40vh;
+  height: 350px;
   margin-top: 15vh;
 }
 
@@ -39,6 +39,7 @@ body {
   display: inline-block;
   width: 7px;
   margin: 1px;
+  background-color: rgb(68, 68, 206);
 }
 
 .disable {
