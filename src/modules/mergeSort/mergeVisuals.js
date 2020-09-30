@@ -2,7 +2,7 @@
 const timeController = 40; // 40 recommended
 let timerTracker = 1;
 
-const visuals = (() => {
+const mergeVisuals = (() => {
   // combined all animations into one function to consolidate timer rounds
   // takes input for the type of animation it will output and adds to timer queue
   const swapColors = (type, first, second) => {
@@ -67,4 +67,4 @@ const visuals = (() => {
     grabTimerValue,
   };
 })();
-export { visuals };
+export { mergeVisuals };

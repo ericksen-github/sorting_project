@@ -1,8 +1,9 @@
-import { visuals } from "./visuals";
+import { mergeVisuals } from "./mergeVisuals";
+import { disableButtons } from "../disableButtons";
 
-const sortFunctions = (() => {
+const mergeSort = (() => {
   const preMerge = (newArray) => {
-    visuals.resetTimeTracker();
+    mergeVisuals.resetTimeTracker();
     let unsortedArray = [];
 
     // takes generated array and pushes each value and the index of its
@@ -13,12 +14,12 @@ const sortFunctions = (() => {
       unsortedArray.push({ value: newArray[i], index: [i][0] });
     }
 
-    mergeSort(unsortedArray);
-    disableButtons(visuals.grabTimerValue());
+    sort(unsortedArray);
+
+    disableButtons(mergeVisuals.grabTimerValue());
   };
 
-  // Merge Sort Algorithm from https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060
-  function mergeSort(unsortedArray) {
+  function sort(unsortedArray) {
     // No need to sort the array if the array only has one element or empty
     if (unsortedArray.length <= 1) {
       return unsortedArray;
@@ -28,7 +29,7 @@ const sortFunctions = (() => {
     const left = unsortedArray.slice(0, middle);
     const right = unsortedArray.slice(middle);
 
-    return merge(mergeSort(left), mergeSort(right));
+    return merge(sort(left), sort(right));
   }
 
   // Merge the two arrays: left and right
@@ -38,15 +39,15 @@ const sortFunctions = (() => {
     // We will concatenate values into the resultArray in order
     // compares the value of each while ignoring the original location index
     while (0 < left.length && 0 < right.length) {
-      visuals.swapColors("red", left[0], right[0]);
+      mergeVisuals.swapColors("red", left[0], right[0]);
 
       if (left[0].value < right[0].value) {
-        visuals.swapColors("blue", left[0], right[0]);
+        mergeVisuals.swapColors("blue", left[0], right[0]);
 
         resultArray.push(left[0]);
         left.shift(); // removes value that was pushed to results
       } else {
-        visuals.swapColors("blue", left[0], right[0]);
+        mergeVisuals.swapColors("blue", left[0], right[0]);
 
         // updates right[0].index to left[0].index which allows shiftDivs
         // to put it in the correct/next location in DOM.
@@ -73,30 +74,13 @@ const sortFunctions = (() => {
       left[i].index = left[i].index + 1;
       shiftArray.push({ value: left[i].value, index: left[i].index });
     }
-    visuals.shiftDivs(shiftArray);
-  };
-
-  const disableButtons = (timeArray) => {
-    const createArrayButton = document.getElementById("createNewArray");
-    const mergeButton = document.getElementById("mergeSort");
-
-    const buttonsArray = [createArrayButton, mergeButton];
-
-    buttonsArray.forEach((btn) => {
-      btn.classList.add("disable");
-    });
-
-    setTimeout(() => {
-      buttonsArray.forEach((btn) => {
-        btn.classList.remove("disable");
-      });
-    }, timeArray[0] * timeArray[1] + 100); // timeTracker * timeController
+    mergeVisuals.shiftDivs(shiftArray);
   };
 
   return {
     preMerge,
-    mergeSort,
+    sort,
   };
 })();
 
-export { sortFunctions };
+export { mergeSort };
