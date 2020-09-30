@@ -1,11 +1,11 @@
 // variables used to control timer functions
-const timeController = 10; // 50 recommended
+const timeController = 40; // 40 recommended
 let timerTracker = 1;
 
 const visuals = (() => {
   // combined all animations into one function to consolidate timer rounds
   // takes input for the type of animation it will output and adds to timer queue
-  const runAnimations = (type, first, second) => {
+  const swapColors = (type, first, second) => {
     const barWrapper = document.getElementById("barWrapper");
 
     const oneBar = barWrapper.childNodes[first.index];
@@ -20,7 +20,6 @@ const visuals = (() => {
         twoBar.style.backgroundColor = "rgb(68, 68, 206)";
       }
     }, timeController * timerTracker);
-
     handleTimerSpeed();
   };
 
@@ -38,11 +37,15 @@ const visuals = (() => {
     handleTimerSpeed();
   };
 
+  // increases total timeout for each new animation.
+  // speeds up animation process as it gets further along in sorting
   const handleTimerSpeed = () => {
-    if (timerTracker < 500) {
+    if (timerTracker < 400) {
       timerTracker++;
-    } else {
+    } else if (timerTracker < 500) {
       timerTracker = timerTracker + 0.75;
+    } else {
+      timerTracker = timerTracker + 0.6;
     }
   };
 
@@ -52,13 +55,14 @@ const visuals = (() => {
     timerTracker = 1;
   };
 
+  // used to disable buttons based on total timeout value
   const grabTimerValue = () => {
     return [timerTracker, timeController];
   };
 
   return {
     resetTimeTracker,
-    runAnimations,
+    swapColors,
     shiftDivs,
     grabTimerValue,
   };
