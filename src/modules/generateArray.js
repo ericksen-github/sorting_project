@@ -1,6 +1,6 @@
 // variables used to control array size and length
 const minNum = 25; // lowest possible value (lower than 25 hard to see on DOM)
-const maxNum = 300; // highest possible value
+const maxNum = 400; // highest possible value
 const length = 100; // total array size
 
 let newArray; // array that stores inital values
