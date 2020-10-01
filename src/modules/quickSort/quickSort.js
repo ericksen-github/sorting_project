@@ -1,6 +1,8 @@
+import { quickVisuals } from "./quickVisuals";
+
 const quickSort = (() => {
-  const preQuick = (unsortedArray) => {
-    console.log(quickSort(unsortedArray));
+  const preQuick = (newArray) => {
+    console.log(quickSort(newArray));
   };
 
   const quickSort = (unsortedArray, comparator = defaultComparator) => {
@@ -17,7 +19,10 @@ const quickSort = (() => {
       const pivotValue = sortedArray[end];
       let splitIndex = start;
       for (let i = start; i < end; i++) {
+        quickVisuals.handleVisuals("red", i, end);
         const sort = comparator(sortedArray[i], pivotValue);
+
+        quickVisuals.handleVisuals("blue", i, end);
 
         // This value is less than the pivot value.
         if (sort === -1) {
@@ -27,6 +32,13 @@ const quickSort = (() => {
             const temp = sortedArray[splitIndex];
             sortedArray[splitIndex] = sortedArray[i];
             sortedArray[i] = temp;
+            quickVisuals.handleVisuals(
+              "swapDiv",
+              i,
+              splitIndex,
+              sortedArray[i],
+              sortedArray[splitIndex]
+            );
           }
 
           // Move the split index to the right by one,
