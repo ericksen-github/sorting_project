@@ -1,8 +1,10 @@
 import { quickVisuals } from "./quickVisuals";
-
+import { disableButtons } from "../disableButtons";
 const quickSort = (() => {
   const preQuick = (newArray) => {
-    console.log(quickSort(newArray));
+    quickVisuals.resetTimeTracker();
+    quickSort(newArray);
+    disableButtons(quickVisuals.grabTimerValue());
   };
 
   const quickSort = (unsortedArray, comparator = defaultComparator) => {
@@ -32,6 +34,7 @@ const quickSort = (() => {
             const temp = sortedArray[splitIndex];
             sortedArray[splitIndex] = sortedArray[i];
             sortedArray[i] = temp;
+            quickVisuals.handleVisuals("green", i, splitIndex);
             quickVisuals.handleVisuals(
               "swapDiv",
               i,
@@ -39,6 +42,7 @@ const quickSort = (() => {
               sortedArray[i],
               sortedArray[splitIndex]
             );
+            quickVisuals.handleVisuals("blue", i, splitIndex);
           }
 
           // Move the split index to the right by one,
@@ -53,6 +57,8 @@ const quickSort = (() => {
       // Move the pivot value to between the split.
       sortedArray[end] = sortedArray[splitIndex];
       sortedArray[splitIndex] = pivotValue;
+
+      quickVisuals.handleVisuals("green", end, splitIndex);
       quickVisuals.handleVisuals(
         "swapDiv",
         end,
@@ -60,6 +66,8 @@ const quickSort = (() => {
         sortedArray[end],
         sortedArray[splitIndex]
       );
+
+      quickVisuals.handleVisuals("blue", end, splitIndex);
 
       // Recursively sort the less-than and greater-than arrays.
       recursiveSort(start, splitIndex - 1);

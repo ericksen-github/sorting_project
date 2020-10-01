@@ -2,8 +2,14 @@ const disableButtons = (timeArray) => {
   const createArrayButton = document.getElementById("createNewArray");
   const mergeButton = document.getElementById("mergeSort");
   const bubbleButton = document.getElementById("bubbleSort");
+  const quickButton = document.getElementById("quickSort");
 
-  const buttonsArray = [createArrayButton, mergeButton, bubbleButton];
+  const buttonsArray = [
+    createArrayButton,
+    mergeButton,
+    bubbleButton,
+    quickButton,
+  ];
 
   buttonsArray.forEach((btn) => {
     btn.classList.add("disable");
