@@ -53,6 +53,13 @@ const quickSort = (() => {
       // Move the pivot value to between the split.
       sortedArray[end] = sortedArray[splitIndex];
       sortedArray[splitIndex] = pivotValue;
+      quickVisuals.handleVisuals(
+        "swapDiv",
+        end,
+        splitIndex,
+        sortedArray[end],
+        sortedArray[splitIndex]
+      );
 
       // Recursively sort the less-than and greater-than arrays.
       recursiveSort(start, splitIndex - 1);
