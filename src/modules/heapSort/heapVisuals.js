@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 10; // 3 recommended
+const timeController = 10; // 10 recommended
 let timerTracker = 1;
 
 const heapVisuals = (() => {

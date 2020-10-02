@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 20; // 3 recommended
+const timeController = 20; // 20 recommended
 let timerTracker = 1;
 
 const quickVisuals = (() => {
@@ -28,14 +28,10 @@ const quickVisuals = (() => {
   };
 
   const handleTimerSpeed = () => {
-    if (timerTracker < 2500) {
+    if (timerTracker < 1000) {
       timerTracker++;
-    } else if (timerTracker < 5000) {
-      timerTracker = timerTracker + 0.75;
-    } else if (timerTracker < 7500) {
-      timerTracker = timerTracker + 0.5;
     } else {
-      timerTracker = timerTracker + 0.25;
+      timerTracker = timerTracker + 0.75;
     }
   };
 

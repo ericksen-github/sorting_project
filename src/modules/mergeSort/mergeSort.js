@@ -17,6 +17,7 @@ const mergeSort = (() => {
     sort(unsortedArray);
 
     disableButtons(mergeVisuals.grabTimerValue());
+    console.log(mergeVisuals.grabTimerValue());
   };
 
   function sort(unsortedArray) {
