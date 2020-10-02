@@ -67,20 +67,24 @@ const heapSort = (() => {
     }
   }
 
-  function swap(array, firstItemIndex, lastItemIndex) {
-    const tmp = array[firstItemIndex];
+  function swap(array, firstIndex, lastIndex) {
+    heapVisuals.handleVisuals("red", firstIndex, lastIndex);
+
+    const tmp = array[firstIndex];
 
     // Swap first and last items in the array.
-    array[firstItemIndex] = array[lastItemIndex];
-    array[lastItemIndex] = tmp;
+    array[firstIndex] = array[lastIndex];
+    array[lastIndex] = tmp;
 
     heapVisuals.handleVisuals(
       "swapDiv",
-      firstItemIndex,
-      lastItemIndex,
-      array[firstItemIndex],
-      array[lastItemIndex]
+      firstIndex,
+      lastIndex,
+      array[firstIndex],
+      array[lastIndex]
     );
+
+    heapVisuals.handleVisuals("blue", firstIndex, lastIndex);
   }
 
   return {
