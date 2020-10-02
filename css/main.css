@@ -84,3 +84,72 @@ footer p {
   margin: 0 3px 0 3px;
   cursor: pointer;
 }
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: not-allowed;
+}
+
+#card {
+  position: absolute;
+  z-index: 3;
+  top: 30%;
+  left: 50%;
+  width: 400px;
+  cursor: not-allowed;
+  animation: slide-up 0.4s ease;
+}
+
+#innerCard {
+  position: relative;
+  text-align: center;
+  left: -50%;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: white;
+  cursor: default;
+}
+
+#innerCard h2 {
+  margin-bottom: 1rem;
+  font-size: xx-large;
+}
+
+#innerCard p {
+  text-align: left;
+  line-height: 1.25;
+  font-size: large;
+}
+
+#closeButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 3rem;
+  border-radius: 0.25rem;
+  font-size: larger;
+  background-color: grey;
+}
+
+#closeButton:hover {
+  background-color: rgb(199, 199, 199);
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
