@@ -15,10 +15,14 @@ body {
   border: 1px solid #1f2f47;
 }
 
+#menu {
+  display: flex;
+  justify-content: center;
+}
+
 .button {
-  display: inline-block;
-  padding: 1rem;
   text-align: center;
+  padding: 1rem;
   text-decoration: none;
   text-shadow: 2px 2px 7px rgba(20, 20, 20, 0.75);
 }
@@ -29,15 +33,18 @@ body {
   cursor: pointer;
 }
 
+.disable {
+  pointer-events: none;
+  color: rgb(153, 0, 0);
+}
+
 #createNewArray {
   border-left: 3px solid #1f2f47;
+  border-right: 3px solid #1f2f47;
 }
 
-#mergeSort {
+#tutorial {
   border-left: 3px solid #1f2f47;
-}
-
-#quickSort {
   border-right: 3px solid #1f2f47;
 }
 
@@ -55,12 +62,6 @@ body {
   width: 7px;
   margin: 1px;
   background-color: rgb(68, 68, 206);
-}
-
-.disable {
-  pointer-events: none;
-  text-decoration: line-through;
-  color: rgb(255, 0, 0);
 }
 
 footer {
