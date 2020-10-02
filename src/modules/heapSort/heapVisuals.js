@@ -24,18 +24,6 @@ const heapVisuals = (() => {
     timerTracker++;
   };
 
-  const handleTimerSpeed = () => {
-    if (timerTracker < 2500) {
-      timerTracker++;
-    } else if (timerTracker < 5000) {
-      timerTracker = timerTracker + 0.75;
-    } else if (timerTracker < 7500) {
-      timerTracker = timerTracker + 0.5;
-    } else {
-      timerTracker = timerTracker + 0.25;
-    }
-  };
-
   // resets timerTracker so that timeouts don't keep stacking on
   // subsequent array sorts
   const resetTimeTracker = () => {
