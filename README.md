@@ -6,6 +6,7 @@ This project demostrates visually how various sorting move through data. I felt 
 
 - Merge Sort
 - Bubble Sort
+- Heap Sort
 - Quick Sort
 
 ## Acknowledgements
@@ -14,6 +15,7 @@ Thanks to:
 
 - Tim Han's article on [Merge Sort](https://medium.com/javascript-in-plain-english/javascript-merge-sort-3205891ac060)
 - Kyle Jensen's article on [Bubble Sort](https://medium.com/javascript-algorithms/javascript-algorithms-bubble-sort-3d27f285c3b2)
+- Vaidehi Joshi's article on [Heap Sort](https://medium.com/basecs/heapify-all-the-things-with-heap-sort-55ee1c93af82)
 - Charles Stover's article on [Quick Sort](https://medium.com/@Charles_Stover/implementing-quicksort-in-javascript-8044a8e2bf39)
 
 ## URL
