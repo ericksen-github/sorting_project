@@ -3,6 +3,7 @@ import { mergeSort } from "./modules/mergeSort/mergeSort";
 import { bubbleSort } from "./modules/bubbleSort/bubbleSort";
 import { quickSort } from "./modules/quickSort/quickSort";
 import { heapSort } from "./modules/heapSort/heapSort";
+import { createTutorialCard } from "./modules/tutorial";
 
 document.getElementById("createNewArray").addEventListener("click", () => {
   generateArrayFunctions.clearBars();
@@ -23,6 +24,10 @@ document.getElementById("quickSort").addEventListener("click", () => {
 
 document.getElementById("heapSort").addEventListener("click", () => {
   heapSort.preHeap(newArray);
+});
+
+document.getElementById("tutorial").addEventListener("click", () => {
+  createTutorialCard();
 });
 
 generateArrayFunctions.generateArray();
