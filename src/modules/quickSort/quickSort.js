@@ -4,6 +4,7 @@ const quickSort = (() => {
   const preQuick = (newArray) => {
     quickVisuals.resetTimeTracker();
     quickSort(newArray);
+    quickVisuals.handleEnd(newArray.length);
     disableButtons(quickVisuals.grabTimerValue());
   };
 

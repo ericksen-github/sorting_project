@@ -5,6 +5,7 @@ const heapSort = (() => {
   const preHeap = (newArray) => {
     heapVisuals.resetTimeTracker();
     sort(newArray);
+    heapVisuals.handleEnd(newArray.length);
     disableButtons(heapVisuals.grabTimerValue());
   };
 

@@ -24,6 +24,8 @@ const bubbleVisuals = (() => {
     handleTimerSpeed();
   };
 
+  // spaces out timeouts to prevent them from overlapping. Reduces time between
+  // timeouts as sorting goes on to speed up/prevent sort from dragging on too long
   const handleTimerSpeed = () => {
     if (timerTracker < 2500) {
       timerTracker++;
@@ -46,10 +48,28 @@ const bubbleVisuals = (() => {
     return [timerTracker, timeController];
   };
 
+  const handleEnd = (endLength) => {
+    setTimeout(() => {
+      for (let i = 0; i < endLength; i++) {
+        const barWrapper = document.getElementById("barWrapper");
+        barWrapper.childNodes[i].style.backgroundColor = "rgb(119, 207, 60)";
+      }
+    }, timeController * timerTracker);
+    timerTracker = timerTracker + 300;
+    setTimeout(() => {
+      for (let i = 0; i < endLength; i++) {
+        const barWrapper = document.getElementById("barWrapper");
+        barWrapper.childNodes[i].style.backgroundColor = "#b769ca";
+      }
+    }, timeController * timerTracker);
+    timerTracker++;
+  };
+
   return {
     handleVisuals,
     resetTimeTracker,
     grabTimerValue,
+    handleEnd,
   };
 })();
 

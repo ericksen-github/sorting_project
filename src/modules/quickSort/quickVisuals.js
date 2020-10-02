@@ -45,10 +45,28 @@ const quickVisuals = (() => {
     return [timerTracker, timeController];
   };
 
+  const handleEnd = (endLength) => {
+    setTimeout(() => {
+      for (let i = 0; i < endLength; i++) {
+        const barWrapper = document.getElementById("barWrapper");
+        barWrapper.childNodes[i].style.backgroundColor = "rgb(119, 207, 60)";
+      }
+    }, timeController * timerTracker);
+    timerTracker = timerTracker + 50;
+    setTimeout(() => {
+      for (let i = 0; i < endLength; i++) {
+        const barWrapper = document.getElementById("barWrapper");
+        barWrapper.childNodes[i].style.backgroundColor = "#b769ca";
+      }
+    }, timeController * timerTracker);
+    timerTracker++;
+  };
+
   return {
     handleVisuals,
     resetTimeTracker,
     grabTimerValue,
+    handleEnd,
   };
 })();
 

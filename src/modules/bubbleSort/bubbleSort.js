@@ -5,6 +5,7 @@ const bubbleSort = (() => {
   const preBubble = (unsortedArray) => {
     bubbleVisuals.resetTimeTracker();
     sort(unsortedArray);
+    bubbleVisuals.handleEnd(unsortedArray.length);
     disableButtons(bubbleVisuals.grabTimerValue());
   };
 
@@ -23,6 +24,7 @@ const bubbleSort = (() => {
           );
 
           if (unsortedArray[i] > unsortedArray[i + 1]) {
+            // swaps the two values
             let tmp = unsortedArray[i];
             unsortedArray[i] = unsortedArray[i + 1];
             unsortedArray[i + 1] = tmp;
