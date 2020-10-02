@@ -1,9 +1,14 @@
+import { heapVisuals } from "./heapVisuals";
+import { disableButtons } from "../disableButtons";
+
 const heapSort = (() => {
   const preHeap = (newArray) => {
-    console.log(heapSort(newArray));
+    heapVisuals.resetTimeTracker();
+    sort(newArray);
+    disableButtons(heapVisuals.grabTimerValue);
   };
 
-  function heapSort(array) {
+  function sort(array) {
     // Build our max heap.
     buildMaxHeap(array);
 
@@ -19,11 +24,11 @@ const heapSort = (() => {
 
       lastElement -= 1;
     }
-    return array;
+    console.log(array);
   }
 
   function buildMaxHeap(array) {
-    var i;
+    let i;
     i = array.length / 2 - 1;
     i = Math.floor(i);
 
@@ -36,20 +41,20 @@ const heapSort = (() => {
   }
 
   function heapify(heap, i, max) {
-    var index, leftChild, righChild;
+    let index, leftChild, rightChild;
 
     while (i < max) {
       index = i;
 
       leftChild = 2 * i + 1;
-      righChild = leftChild + 1;
+      rightChild = leftChild + 1;
 
       if (leftChild < max && heap[leftChild] > heap[index]) {
         index = leftChild;
       }
 
-      if (righChild < max && heap[righChild] > heap[index]) {
-        index = righChild;
+      if (rightChild < max && heap[rightChild] > heap[index]) {
+        index = rightChild;
       }
 
       if (index == i) {
@@ -62,12 +67,20 @@ const heapSort = (() => {
     }
   }
 
-  function swap(array, firstItemIndex, lastItemInde) {
-    var tmp = array[firstItemIndex];
+  function swap(array, firstItemIndex, lastItemIndex) {
+    const tmp = array[firstItemIndex];
 
     // Swap first and last items in the array.
-    array[firstItemIndex] = array[lastItemInde];
-    array[lastItemInde] = tmp;
+    array[firstItemIndex] = array[lastItemIndex];
+    array[lastItemIndex] = tmp;
+
+    heapVisuals.handleVisuals(
+      "swapDiv",
+      firstItemIndex,
+      lastItemIndex,
+      array[firstItemIndex],
+      array[lastItemIndex]
+    );
   }
 
   return {
