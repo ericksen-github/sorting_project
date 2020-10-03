@@ -67,7 +67,7 @@ const mergeVisuals = (() => {
         barWrapper.childNodes[i].style.backgroundColor = "rgb(119, 207, 60)";
       }
     }, timeController * timerTracker);
-    timerTracker = timerTracker + 50;
+    timerTracker = timerTracker + 25;
     setTimeout(() => {
       for (let i = 0; i < endLength; i++) {
         const barWrapper = document.getElementById("barWrapper");
