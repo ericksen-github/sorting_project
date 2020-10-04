@@ -14,7 +14,15 @@ const createTutorialCard = () => {
   container.appendChild(h);
 
   p.innerHTML =
-    'This project allows you to visualize how different sorting methods move through data while sorting. Click on the sort method you want to try out. Click the "Create New Array" button to generate a new, random array of numbers. Check out how each sort compares to the others.';
+    "This project allows you to visualize how different sorting methods";
+
+  p.innerHTML +=
+    " move through data while sorting. Click on the sort method you";
+  p.innerHTML += ' want to try out. Click the "Create New Array" button to ';
+  p.innerHTML += "generate a new, random array of numbers. Red highlighting ";
+  p.innerHTML += "indicates a comparison. Green indicates a change in value. ";
+  p.innerHTML += "Check out how each sort compares to the others.";
+
   container.appendChild(p);
 
   button.id = "closeButton";
