@@ -102,7 +102,7 @@ footer p {
 #card {
   position: absolute;
   z-index: 3;
-  top: 30%;
+  top: 20%;
   left: 50%;
   width: 400px;
   cursor: not-allowed;
@@ -126,8 +126,8 @@ footer p {
 
 #innerCard p {
   text-align: left;
-  line-height: 1.25;
-  font-size: large;
+  line-height: 1.4;
+  font-size: medium;
 }
 
 #closeButton {
