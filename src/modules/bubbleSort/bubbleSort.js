@@ -29,12 +29,8 @@ const bubbleSort = (() => {
             unsortedArray[i] = unsortedArray[i + 1];
             unsortedArray[i + 1] = tmp;
 
-            bubbleVisuals.handleVisuals(
-              "swapDiv",
-              unsortedArray[i],
-              unsortedArray[i + 1],
-              i
-            );
+            goGreenSwapRed(unsortedArray[i], unsortedArray[i + 1], i);
+
             swapped = true;
           }
           bubbleVisuals.handleVisuals(
@@ -47,6 +43,12 @@ const bubbleSort = (() => {
       }
     } while (swapped);
     return unsortedArray;
+  };
+
+  const goGreenSwapRed = (first, second, index) => {
+    bubbleVisuals.handleVisuals("green", first, second, index);
+    bubbleVisuals.handleVisuals("swapDiv", first, second, index);
+    bubbleVisuals.handleVisuals("red", first, second, index);
   };
 
   return {

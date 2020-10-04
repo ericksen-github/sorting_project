@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 3; // 3 recommended
+const timeController = 5; // 5 recommended
 let timerTracker = 1;
 
 const bubbleVisuals = (() => {
@@ -16,6 +16,9 @@ const bubbleVisuals = (() => {
       } else if (type == "blue") {
         oneBar.style.backgroundColor = "rgb(68, 68, 206)";
         twoBar.style.backgroundColor = "rgb(68, 68, 206)";
+      } else if (type == "green") {
+        oneBar.style.backgroundColor = "rgb(119, 207, 60)";
+        twoBar.style.backgroundColor = "rgb(119, 207, 60)";
       } else if ((type = "swapDiv")) {
         oneBar.style.height = `${first}px`;
         twoBar.style.height = `${second}px`;
