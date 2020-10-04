@@ -1,5 +1,5 @@
 // variables used to control timer functions
-const timeController = 40; // 40 recommended
+const timeController = 30; // 30 recommended
 let timerTracker = 1;
 
 const mergeVisuals = (() => {
@@ -26,6 +26,14 @@ const mergeVisuals = (() => {
   const shiftDivs = (shiftArray) => {
     const barWrapper = document.getElementById("barWrapper");
 
+    // index 0 is the only value changing, others stay at end of current range
+    setTimeout(() => {
+      const index = shiftArray[0].index;
+      barWrapper.childNodes[index].style.backgroundColor = "rgb(119, 207, 60)"; // green
+    }, timeController * timerTracker);
+    handleTimerSpeed();
+
+    // keeps values that haven't been compared at end of range
     setTimeout(() => {
       for (let i = 0; i < shiftArray.length; i++) {
         const index = shiftArray[i].index;
@@ -33,6 +41,12 @@ const mergeVisuals = (() => {
 
         barWrapper.childNodes[index].style.height = `${height}px`;
       }
+    }, timeController * timerTracker);
+    handleTimerSpeed();
+
+    setTimeout(() => {
+      const index = shiftArray[0].index;
+      barWrapper.childNodes[index].style.backgroundColor = "rgb(68, 68, 206)"; // blue
     }, timeController * timerTracker);
     handleTimerSpeed();
   };
