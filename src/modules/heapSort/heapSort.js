@@ -25,7 +25,6 @@ const heapSort = (() => {
 
       lastElement -= 1;
     }
-    console.log(array);
   }
 
   function buildMaxHeap(array) {
@@ -51,10 +50,14 @@ const heapSort = (() => {
       rightChild = leftChild + 1;
 
       if (leftChild < max && heap[leftChild] > heap[index]) {
+        heapVisuals.handleVisuals("red", leftChild, index);
+        heapVisuals.handleVisuals("blue", leftChild, index);
         index = leftChild;
       }
 
       if (rightChild < max && heap[rightChild] > heap[index]) {
+        heapVisuals.handleVisuals("red", rightChild, index);
+        heapVisuals.handleVisuals("blue", rightChild, index);
         index = rightChild;
       }
 
@@ -69,24 +72,27 @@ const heapSort = (() => {
   }
 
   function swap(array, firstIndex, lastIndex) {
-    heapVisuals.handleVisuals("red", firstIndex, lastIndex);
-
     const tmp = array[firstIndex];
 
     // Swap first and last items in the array.
     array[firstIndex] = array[lastIndex];
     array[lastIndex] = tmp;
 
-    heapVisuals.handleVisuals(
-      "swapDiv",
+    goRedGreenSwapBlue(
       firstIndex,
       lastIndex,
       array[firstIndex],
       array[lastIndex]
     );
+  }
+
+  const goRedGreenSwapBlue = (firstIndex, lastIndex, vOne, vTwo) => {
+    heapVisuals.handleVisuals("red", firstIndex, lastIndex);
+    heapVisuals.handleVisuals("green", firstIndex, lastIndex);
+    heapVisuals.handleVisuals("swapDiv", firstIndex, lastIndex, vOne, vTwo);
 
     heapVisuals.handleVisuals("blue", firstIndex, lastIndex);
-  }
+  };
 
   return {
     preHeap,

@@ -16,6 +16,9 @@ const heapVisuals = (() => {
       } else if (type == "blue") {
         oneBar.style.backgroundColor = "rgb(68, 68, 206)";
         twoBar.style.backgroundColor = "rgb(68, 68, 206)";
+      } else if (type == "green") {
+        oneBar.style.backgroundColor = "rgb(119, 207, 60)";
+        twoBar.style.backgroundColor = "rgb(119, 207, 60)";
       } else if ((type = "swapDiv")) {
         oneBar.style.height = `${vOne}px`;
         twoBar.style.height = `${vTwo}px`;
@@ -41,7 +44,7 @@ const heapVisuals = (() => {
         barWrapper.childNodes[i].style.backgroundColor = "rgb(119, 207, 60)";
       }
     }, timeController * timerTracker);
-    timerTracker = timerTracker + 50;
+    timerTracker = timerTracker + 100;
     setTimeout(() => {
       for (let i = 0; i < endLength; i++) {
         const barWrapper = document.getElementById("barWrapper");
